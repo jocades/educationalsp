@@ -6,6 +6,7 @@ import (
 	"educationalsp/lsp"
 	"educationalsp/rpc"
 	"encoding/json"
+	"io"
 	"log"
 	"os"
 	"path"
@@ -17,6 +18,7 @@ func main() {
 	scanner := bufio.NewScanner(os.Stdin)
 	scanner.Split(rpc.Split)
 
+	writer := os.Stdout
 	state := analysis.NewState()
 
 	for scanner.Scan() {
@@ -25,11 +27,11 @@ func main() {
 		if err != nil {
 			logger.Printf("Got an error: %s", err)
 		}
-		handleMessage(state, method, contents)
+		handleMessage(writer, state, method, contents)
 	}
 }
 
-func handleMessage(state analysis.State, method string, contents []byte) {
+func handleMessage(w io.Writer, state analysis.State, method string, contents []byte) {
 	logger.Printf("Received msg with method: %s", method)
 
 	switch method {
@@ -46,11 +48,7 @@ func handleMessage(state analysis.State, method string, contents []byte) {
 			request.Params.ClientInfo.Version)
 
 		msg := lsp.NewInitializeResponse(request.ID)
-		reply := rpc.EncodeMessage(msg)
-		writer := os.Stdout
-		writer.Write([]byte(reply))
-
-		logger.Printf("Sent reply %v", reply)
+		writeResponse(w, msg)
 
 	case "textDocument/didOpen":
 		var request lsp.DidOpenTextDocumentNotification
@@ -73,7 +71,38 @@ func handleMessage(state analysis.State, method string, contents []byte) {
 		for _, change := range request.Params.ContentChanges {
 			state.OpenDocument(request.Params.TextDocument.URI, change.Text)
 		}
+
+	case "textDocument/hover":
+		var request lsp.HoverRequest
+		if err := json.Unmarshal(contents, &request); err != nil {
+			logger.Printf("textDocument/hover: %s", err)
+			return
+		}
+
+		prettyPrint(request)
+
+		respone := lsp.HoverResponse{
+			Response: lsp.Response{
+				RPC: "2.0",
+				ID:  &request.ID,
+			},
+			Result: lsp.HoverResult{
+				Contents: "Hello from LSP!",
+			},
+		}
+		writeResponse(w, respone)
+
 	}
+}
+
+func writeResponse(w io.Writer, msg any) {
+	reply := rpc.EncodeMessage(msg)
+	w.Write([]byte(reply))
+}
+
+func prettyPrint(v any) {
+	pretty, _ := json.MarshalIndent(v, "", "  ")
+	logger.Printf("hoverRequest: %s", pretty)
 }
 
 var logger *log.Logger

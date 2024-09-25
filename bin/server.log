@@ -1,9 +1,23 @@
-[educationalsp] 2024/09/25 16:17:37 main.go:15: Started
-[educationalsp] 2024/09/25 16:17:37 main.go:33: Received msg with method: initialize
-[educationalsp] 2024/09/25 16:17:37 main.go:44: Connected to: Neovim, 0.10.1
-[educationalsp] 2024/09/25 16:17:37 main.go:53: Sent reply Content-Length: 147
-
-{"jsonrpc":"2.0","id":1,"result":{"capabilities":{"textDocumentSync":1},"serverInfo":{"name":"educationalsp","version":"0.0.0.0.0.0-beta1.final"}}}
-[educationalsp] 2024/09/25 16:17:38 main.go:33: Received msg with method: initialized
-[educationalsp] 2024/09/25 16:17:39 main.go:33: Received msg with method: textDocument/didOpen
-[educationalsp] 2024/09/25 16:17:39 main.go:62: Oppened: file:///Users/j0rdi/.config/nvim/lua/lib/lsp-util/test.md
+[educationalsp] 2024/09/25 16:51:36 main.go:16: Started
+[educationalsp] 2024/09/25 16:51:36 main.go:35: Received msg with method: initialize
+[educationalsp] 2024/09/25 16:51:36 main.go:46: Connected to: Neovim, 0.10.1
+[educationalsp] 2024/09/25 16:51:36 main.go:35: Received msg with method: initialized
+[educationalsp] 2024/09/25 16:51:37 main.go:35: Received msg with method: textDocument/didOpen
+[educationalsp] 2024/09/25 16:51:37 main.go:60: Oppened: file:///Users/j0rdi/.config/nvim/lua/lib/lsp-util/test.md
+[educationalsp] 2024/09/25 16:51:42 main.go:35: Received msg with method: textDocument/hover
+[educationalsp] 2024/09/25 16:51:42 main.go:105: hoverRequest: {
+  "jsonrpc": "2.0",
+  "id": 2,
+  "method": "textDocument/hover",
+  "params": {
+    "textDocumentPositionParams": {
+      "textDocument": {
+        "uri": ""
+      },
+      "position": {
+        "line": 0,
+        "character": 0
+      }
+    }
+  }
+}
