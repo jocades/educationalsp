@@ -78,11 +78,25 @@ func handleMessage(w io.Writer, state analysis.State, method string, contents []
 			logger.Printf("textDocument/hover: %s", err)
 			return
 		}
-
 		prettyPrint(request)
 
-		respone := state.Hover(request.ID, request.Params.TextDocument.URI, request.Params.Position)
-		writeResponse(w, respone)
+		response := state.Hover(request.ID, request.Params.TextDocument.URI, request.Params.Position)
+		prettyPrint(response)
+
+		writeResponse(w, response)
+
+	case "textDocument/definition":
+		var request lsp.DefinitionRequest
+		if err := json.Unmarshal(contents, &request); err != nil {
+			logger.Printf("textDocument/definition: %s", err)
+			return
+		}
+		prettyPrint(request)
+
+		response := state.Definition(request.ID, request.Params.TextDocument.URI, request.Params.Position)
+		prettyPrint(response)
+
+		writeResponse(w, response)
 	}
 }
 
@@ -93,7 +107,7 @@ func writeResponse(w io.Writer, msg any) {
 
 func prettyPrint(v any) {
 	pretty, _ := json.MarshalIndent(v, "", "  ")
-	logger.Printf("hoverRequest: %s", pretty)
+	logger.Printf("%s", pretty)
 }
 
 var logger *log.Logger

@@ -31,9 +31,9 @@ type ServerCapabilities struct {
 	 * Defines how the host (editor) should sync document changes to the language server.
 	 * (https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#textDocument_synchronization)
 	 */
-	TextDocumentSync int  `json:"textDocumentSync"`
-	HoverProvider    bool `json:"hoverProvider"`
-	// DefinitionProvider bool           `json:"definitionProvider"`
+	TextDocumentSync   int  `json:"textDocumentSync"`
+	HoverProvider      bool `json:"hoverProvider"`
+	DefinitionProvider bool `json:"definitionProvider"`
 	// CodeActionProvider bool           `json:"codeActionProvider"`
 	// CompletionProvider map[string]any `json:"completionProvider"`
 }
@@ -54,9 +54,9 @@ func NewInitializeResponse(id int) InitializeResponse {
 				/**
 				 * Documents are synced by always sending the full content of the document.
 				 */
-				TextDocumentSync: 1,
-				HoverProvider:    true,
-				// DefinitionProvider: true,
+				TextDocumentSync:   1,
+				HoverProvider:      true,
+				DefinitionProvider: true,
 				// CodeActionProvider: true,
 				// CompletionProvider: map[string]any{},
 			},

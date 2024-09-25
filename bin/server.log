@@ -1,36 +1,38 @@
-[educationalsp] 2024/09/25 17:01:24 main.go:16: Started
-[educationalsp] 2024/09/25 17:01:24 main.go:35: Received msg with method: initialize
-[educationalsp] 2024/09/25 17:01:24 main.go:46: Connected to: Neovim, 0.10.1
-[educationalsp] 2024/09/25 17:01:24 main.go:35: Received msg with method: initialized
-[educationalsp] 2024/09/25 17:01:25 main.go:35: Received msg with method: textDocument/didOpen
-[educationalsp] 2024/09/25 17:01:25 main.go:60: Oppened: file:///Users/j0rdi/.config/nvim/lua/lib/lsp-util/test.md
-[educationalsp] 2024/09/25 17:01:27 main.go:35: Received msg with method: textDocument/hover
-[educationalsp] 2024/09/25 17:01:27 main.go:97: hoverRequest: {
+[educationalsp] 2024/09/25 23:33:07 main.go:16: Started
+[educationalsp] 2024/09/25 23:33:07 main.go:35: Received msg with method: initialize
+[educationalsp] 2024/09/25 23:33:07 main.go:46: Connected to: Neovim, 0.10.1
+[educationalsp] 2024/09/25 23:33:07 main.go:35: Received msg with method: initialized
+[educationalsp] 2024/09/25 23:33:09 main.go:35: Received msg with method: textDocument/didOpen
+[educationalsp] 2024/09/25 23:33:09 main.go:60: Oppened: file:///Users/j0rdi/.config/nvim/lua/lib/lsp-util/test.md
+[educationalsp] 2024/09/25 23:33:10 main.go:35: Received msg with method: textDocument/definition
+[educationalsp] 2024/09/25 23:33:10 main.go:109: {
   "jsonrpc": "2.0",
   "id": 2,
-  "method": "textDocument/hover",
+  "method": "textDocument/definition",
   "params": {
     "textDocument": {
       "uri": "file:///Users/j0rdi/.config/nvim/lua/lib/lsp-util/test.md"
     },
     "position": {
-      "line": 2,
-      "character": 2
+      "line": 4,
+      "character": 8
     }
   }
 }
-[educationalsp] 2024/09/25 17:01:29 main.go:35: Received msg with method: textDocument/hover
-[educationalsp] 2024/09/25 17:01:29 main.go:97: hoverRequest: {
+[educationalsp] 2024/09/25 23:33:10 main.go:109: {
   "jsonrpc": "2.0",
-  "id": 3,
-  "method": "textDocument/hover",
-  "params": {
-    "textDocument": {
-      "uri": "file:///Users/j0rdi/.config/nvim/lua/lib/lsp-util/test.md"
-    },
-    "position": {
-      "line": 2,
-      "character": 3
+  "id": 2,
+  "result": {
+    "uri": "file:///Users/j0rdi/.config/nvim/lua/lib/lsp-util/test.md",
+    "range": {
+      "start": {
+        "line": 3,
+        "character": 0
+      },
+      "end": {
+        "line": 3,
+        "character": 0
+      }
     }
   }
 }
