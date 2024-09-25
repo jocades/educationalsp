@@ -81,17 +81,8 @@ func handleMessage(w io.Writer, state analysis.State, method string, contents []
 
 		prettyPrint(request)
 
-		respone := lsp.HoverResponse{
-			Response: lsp.Response{
-				RPC: "2.0",
-				ID:  &request.ID,
-			},
-			Result: lsp.HoverResult{
-				Contents: "Hello from LSP!",
-			},
-		}
+		respone := state.Hover(request.ID, request.Params.TextDocument.URI, request.Params.Position)
 		writeResponse(w, respone)
-
 	}
 }
 

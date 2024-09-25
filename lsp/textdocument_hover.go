@@ -6,7 +6,7 @@ type HoverRequest struct {
 }
 
 type HoverParams struct {
-	TextDocumentPositionParams TextDocumentPositionParams `json:"textDocumentPositionParams"`
+	TextDocumentPositionParams
 }
 
 type HoverResponse struct {
